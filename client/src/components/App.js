@@ -9,16 +9,7 @@ import Header from './Header';
 
 
 
-const PageTwo = () => {
-    return (
-        <div>
-        <div>PageTwo</div>
 
-        <button>Click me</button>
-        <Link to="/">Navigate to PageOne</Link>
-        </div>
-    );
-}
 
 const App = () => {
     return (
