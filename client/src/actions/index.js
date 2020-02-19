@@ -1,15 +1,16 @@
 import streams from '../apis/streams';
+import { SIGN_IN, SIGN_OUT, CREATE_STREAM } from './types';
 
 export const signIn = (userId) => {
     return {
-        type: 'SIGN_IN',
+        type: SIGN_IN,
         payload: userId
     };
 };
 
 export const signOut = () => {
     return {
-        type: 'SIGN_OUT'
+        type: SIGN_OUT
     };
 };
 
@@ -21,6 +22,8 @@ export const signOut = () => {
 export const createStream = (formValues) => {
     //we're making an asynchronous action creator, so we're using redux-thunk
     return async (dispatch) => {
-        streams.post('/streams', formValues);
+        const response = await streams.post('/streams', formValues);
+
+        dispatch({ type: CREATE_STREAM, payload: response.data });
     };
 }

@@ -32,8 +32,9 @@ class StreamCreate extends React.Component {
         )
     }
 
-    onSubmit(formValues) {
-        console.log(formValues);
+    onSubmit = (formValues) => {
+        //this is calling the action creator createStream
+        this.props.createStream(formValues);
     }
 
     render() {
@@ -70,7 +71,16 @@ const validate = (formValues) => {
     //the corresponding error message
 }
 
-export default reduxForm({
+//remove the export default
+const formWrapped =  reduxForm({
     form: 'createStream',
     validate
 })(StreamCreate);
+
+export default connect(null, { createStream })(formWrapped);
+
+//The code below is the same as the 6 lines above which is just a nicer looking syntax
+// export default connect(reduxForm({
+//     form: 'createStream',
+//     validate
+// })(StreamCreate));
