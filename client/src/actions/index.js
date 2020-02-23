@@ -27,10 +27,15 @@ export const signOut = () => {
 //formValues are the list of all the values we listed into our createStream Form as an argument
 export const createStream = (formValues) => {
     //we're making an asynchronous action creator, so we're using redux-thunk
-    return async (dispatch) => {
-        const response = await streams.post('/streams', formValues);
+    return async (dispatch, getState) => {
+        //adding Gauth userid info from getState
+        const { userId } = getState().auth;
+        const response = await streams.post('/streams', { ...formValues, userId });
 
         dispatch({ type: CREATE_STREAM, payload: response.data });
+
+        //programmatic navigation to send user back to main page after they submit new stream
+
     };
 }
 
