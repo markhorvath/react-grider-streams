@@ -1,4 +1,5 @@
 import streams from '../apis/streams';
+import history from '../history';
 import { SIGN_IN,
     SIGN_OUT,
     CREATE_STREAM,
@@ -35,7 +36,7 @@ export const createStream = (formValues) => {
         dispatch({ type: CREATE_STREAM, payload: response.data });
 
         //programmatic navigation to send user back to main page after they submit new stream
-
+        history.push('/');
     };
 }
 
