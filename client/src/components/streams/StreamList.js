@@ -5,6 +5,7 @@ import { fetchStreams } from '../../actions';
 
 class StreamList extends React.Component {
     componentDidMount() {
+        // console.log('fetchStreams:', this.props)
         this.props.fetchStreams();
     }
 
@@ -14,7 +15,7 @@ class StreamList extends React.Component {
             return (
                 <div className="right floated content">
                     <Link to={`/streams/edit/${stream.id}`} className="ui button primary">Edit</Link>
-                    <button className="ui button negative">Delete</button>
+                    <Link to={`/streams/delete/${stream.id}`} className="ui button negative">Delete</Link>
                 </div>
             )
         }
@@ -73,6 +74,6 @@ const mapStateToProps = (state) => {
         currentUserId: state.auth.userId,
         isSignedIn: state.auth.isSignedIn
      };
-}
+};
 
 export default connect(mapStateToProps, { fetchStreams })(StreamList);
